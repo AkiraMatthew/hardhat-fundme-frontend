@@ -4,7 +4,7 @@
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
-    "outDir": "./public/scripts",
+    "outDir": "public/scripts",
     "rootDir": "src",
     "declaration": true
   }
