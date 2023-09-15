@@ -12,3 +12,5 @@ To compile the typescript code to javascript, use the following command:
 ```shell
 tsc -- watch
 ```
+
+or use the key CTRL + SHIFT + B
