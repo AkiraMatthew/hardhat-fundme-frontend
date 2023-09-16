@@ -1,5 +1,5 @@
-1. HTLM / JavaScript (or TypeScript compiled im JavaScript)
-   Later on, we will use NextJS/ReactJS
+<h1>HTLM / JavaScript (or TypeScript compiled im JavaScript)</h1>
+<h2>Later on, we will use NextJS/ReactJS</h2>
 
 Be sure to have the latest typescript version installed globally in your workspace or install with the following command:
 
@@ -10,7 +10,7 @@ npm i -D typescript
 To compile the typescript code to javascript, use the following command:
 
 ```shell
-tsc -- watch
+tsc --watch
 ```
 
-or use the key CTRL + SHIFT + B
+or use the command palette CTRL + SHIFT + B
