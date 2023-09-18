@@ -18,7 +18,7 @@ async function connect() {
 }
 // fund function
 async function fund() {
-    const ethAmount = "35.65";
+    const ethAmount = "25";
     console.log(`Funding with ${ethAmount}...`);
     if (typeof window.ethereum !== "undefined") {
         // The following is what we need to send a trx through a
@@ -31,12 +31,31 @@ async function fund() {
         const signer = provider.getSigner();
         const contract = new ethers.Contract(contractAddress, abi, signer); // ?
         try {
-            const transactionResponse = await contract.fund({
+            const txResponse = await contract.fund({
                 value: ethers.utils.parseEther(ethAmount),
             });
+            // listen for the tx to be mined
+            // listen for this tx to be finished
+            await listenForTxMine(txResponse, provider);
+            // listen for an event
+            console.log("Done!");
         } catch (error) {
             console.log(error);
         }
     }
 }
+
+function listenForTxMine(txResponse, provider) {
+    console.log(`Mining ${txResponse.hash}...`);
+    // create a listener to the blockchain
+    return new Promise((resolve, reject) => {
+        provider.once(txResponse.hash, (txReceipt) => {
+            console.log(
+                `Completed with ${txReceipt.confirmations} confirmations`
+            );
+            resolve();
+        });
+    });
+}
+
 // withdraw
