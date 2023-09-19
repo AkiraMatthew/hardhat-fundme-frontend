@@ -18,7 +18,7 @@ async function connect() {
 }
 // fund function
 async function fund() {
-    const ethAmount = "25";
+    const ethAmount = document.getElementById("ethAmount").value; // buggy, needs a minimum value of 25eth
     console.log(`Funding with ${ethAmount}...`);
     if (typeof window.ethereum !== "undefined") {
         // The following is what we need to send a trx through a
