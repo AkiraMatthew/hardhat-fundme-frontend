@@ -4,9 +4,11 @@ import { abi, contractAddress } from "../constants.js";
 const connectButton = document.getElementById("connectButton");
 const fundButton = document.getElementById("fundButton");
 const balanceButton = document.getElementById("balanceButton");
+const withdrawButton = document.getElementById("withdrawButton");
 connectButton.onclick = connect;
 fundButton.onclick = fund;
 balanceButton.onclick = getBalance;
+withdrawButton.onclick = withdraw;
 
 console.log(ethers);
 
@@ -71,3 +73,17 @@ function listenForTxMine(txResponse, provider) {
 }
 
 // withdraw
+async function withdraw() {
+    if (typeof window.ethereum !== "undefined") {
+        console.log("Withdrawing...");
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, abi, signer); // ?
+        try {
+            const txResponse = await contract.withdraw();
+            await listenForTxMine(txResponse, provider);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
